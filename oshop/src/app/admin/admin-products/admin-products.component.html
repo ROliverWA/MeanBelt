@@ -1,0 +1,23 @@
+<p>
+<a routerLink='/admin/products/new' class="btn btn-primary">New Product</a>
+</p>
+<select #category='ngModel' ngModel name='category' class="form-control" id='category' required (change) = 'getProducts(category.value)'>
+    <h3>Choose a category to view its products</h3>
+    <option *ngFor='let category of categories'[value]='category.name'>{{category.name}}</option>      
+</select>
+<table class='table table-striped'>
+    <thead>
+        <tr>
+            <td><h2>Title</h2></td>
+            <td><h2>Price</h2></td>
+            <td></td>
+        </tr>
+    </thead>  
+    <tbody>
+        <tr *ngFor="let product of products">
+            <td>{{product.name}}</td>
+            <td>{{product.price | currency}}</td>
+            <td><a [routerLink]="['/admin/products/', product._id]">Edit</a></td>
+        </tr>
+    </tbody>  
+</table>   

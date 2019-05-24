@@ -1,0 +1,29 @@
+<div class="container" *ngIf="Results">
+  <div class="row">
+    <div class='col-11'>      
+    <h1>Dojo Shelter</h1>
+  </div>
+  <div>
+    <a routerLink ="/"><button class='btn btn-primary'>Home</button></a>
+  </div>
+  </div>
+  <div class="row">
+    <h3 *ngIf = "pet">Details about {{pet.name}}</h3>
+  </div>
+<div class='row'>
+    <div class='col-1'></div>
+ <table class="pets_table">
+   <tr><td><h3>Pet type:</h3></td><td>      </td><td><h4>{{pet.type}}</h4></td></tr>   
+    <tr><td><h3>Description:</h3></td><td>      </td><td><h4>{{pet.desc}}</h4></td></tr>
+    <tr *ngIf="pet.skills"><td><h3>Skills:</h3></td><td><tr *ngFor=" let skill of pet.skills">{{skill.name}}</tr></td></tr>
+    <tr><td><h3>Likes:</h3></td><td>      </td><td><h4>{{pet.likes}}</h4></td></tr> 
+</table>
+</div>
+</div>
+<div class="row">
+<div class="like_btn">
+    <button class='btn btn-primary' (click) = "LikeMe()" [disabled] = "liked">Like</button>
+  </div>
+<div class="adopt_btn">
+  <button class='btn btn-primary' (click) = "AdoptMe()">Adopt</button>
+</div></div>

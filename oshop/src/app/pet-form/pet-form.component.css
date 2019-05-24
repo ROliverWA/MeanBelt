@@ -1,0 +1,20 @@
+.skill_list{
+    margin-top: 10px;
+}
+
+ul, li {
+list-style: none;
+
+}
+
+.cancel-btn {
+    margin-left: 10px;
+}
+
+.buttons {
+    margin-top: 10px;
+}
+
+h2 {
+    margin-left: 40px;
+}

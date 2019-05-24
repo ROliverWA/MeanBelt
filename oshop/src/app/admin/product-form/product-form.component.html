@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-md-6">
+<form #f='ngForm' (ngSubmit)='addProduct(f.value)'>
+  <div class="form-group">
+    <label for="title">Title</label>
+    <p>{{product | json}}</p>
+    <input #title='ngModel' ngModel name="name" type="text" class="form-control" id='title'required value="Product Name" value =  "product['products'][0].name">
+    <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+      Title is required.
+      
+    </div>
+  </div>  
+  <div class="form-group" >
+    <label for="price">Price</label>
+    <div class="input-group mb3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">$</span>
+      </div>      
+    <input #price='ngModel'ngModel name='price' type="number" class="form-control"  id='price' required [min] = "0" value = "product['products'][0].price"></div>
+    <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
+      <div *ngIf="price.errors.required"> Price is required.</div> 
+      <div *ngIf="price.errors.min"> Price must be 0 or higher.</div> 
+     
+      </div>
+  </div>  
+  <div class="form-group">
+    <label for="category">Category</label>
+    <select #category='ngModel' ngModel name='category' class="form-control" id='category' required>
+      <option *ngFor='let category of categories'[value]='category.name'>{{category.name}}</option>      
+      </select> 
+      <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
+        <div *ngIf='category.errors.required'>Category is required.</div>        
+        </div>
+  </div>
+  <div class="form-group">
+      <label for="imageUrl">Image URL</label>
+      <input #desc='ngModel' ngModel name='desc' type="text" class="form-control" id='imageUrl' required url value = "product['products'][0].desc">
+      <div class="alert alert-danger" *ngIf="desc.touched && desc.invalid">
+          <div *ngIf='desc.errors.required'>Image URL is required.</div>
+          <div *ngIf='desc.errors.url'>Please enter a vaild URL.</div>
+        </div>
+    </div>
+    <div class='row'>
+      <button class="btn btn-primary">Save</button>
+      <a routerLink="/admin/products"><button class="btn btn-primary cancel-btn">Cancel</button></a>
+    </div>
+</form>
+  </div>
+  <div class="class md-6">
+      <div class="card" style="width: 18rem;">
+          <img [src]="desc.value" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">{{title.value}}</h5>
+            <p class="card-text">{{price.value | currency:"USD":true}}</p>            
+          </div>
+        </div>
+  </div>
+</div>
